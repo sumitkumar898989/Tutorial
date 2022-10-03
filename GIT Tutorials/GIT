@@ -1,0 +1,17 @@
+upload project in github repositiry using gitbash:
+Steps:
+git init
+git add .
+git commit -m "adding files"
+git remote add origin https://github.com/sumitkumar898989/FirstProj.git
+git push -u origin master
+https://stackoverflow.com/questions/12799719/how-to-upload-a-project-to-github
+
+https://github.com/sumitkumar898989/OrderStatusReportUtil.git
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+get the code from github:
+
+git clone -b working_barnch https://github.com/sumitkumar898989/SendEmail.git
+
+C:\Users\SKUMA596\Documents\workspace-spring-tool-suite-4-4.15.1.RELEASE
