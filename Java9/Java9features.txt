@@ -1,0 +1,4 @@
+1. private method in interface
+2. try with resource code can be define outsdie not locally
+3. collection factory method list.of()
+4. underscore keyword removed for variable
