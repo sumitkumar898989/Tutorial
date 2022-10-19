@@ -1,0 +1,8 @@
+1. default and static method in iterface.
+2. Functional interface
+3. lambda
+4. stream
+5. optional
+6. for each method
+7. method reference
+8. collector class
