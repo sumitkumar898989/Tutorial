@@ -1,0 +1,3 @@
+1. String in switch statement
+2. catch multiple exception
+3. try with resource

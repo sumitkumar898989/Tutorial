@@ -1,0 +1,5 @@
+1. varargs
+2. static import
+3. autoboxing and unboxing
+4. annotation
+5. generic
