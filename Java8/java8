@@ -1,0 +1,66 @@
+lambda
+
+1. lambda is annonymous function
+   no name
+   no modifier
+   no return type
+   
+2. to call lambda we require functional interface.
+
+3. functional interface contains only one abstract method. e.g: Runnable,Collable,Comparable
+
+
+use of lambda function
+
+1. provide implementation of functional interface.
+2. used in stream filter and map.
+3. in foreach method
+
+-------------------end of lambda------------------------------------------------------------------------------
+
+Stream
+
+perform bulk operations and process the object of collection.
+
+filter method of stream used to filter data of collection.
+
+
+how to create Stream Object
+-----------------------------
+1.	Creating blank stream using static empty method of Stream interface
+2.	Array object collection using of static method of Stream interface.
+3.	Using Stream Builder and IntStream
+4.	Using List, Set
+
+important Stream methods
+----------------------------------------
+1. filter(predicate): Predicate is Boolean value function which returns either true or false.
+e.g: checking even numbers in arraylist.
+2. map(function): each element operation. Map take function as argument function means which return value not Boolean value.
+e.g: doing square of each element of arraylist.
+3. foreach method to iterate the elements.
+4. sorted method is used to sort the elements.
+
+
+------------------------------------------end of stream--------------------------------------------------------------------------------------------
+
+Method Reference
+
+Special type of lambda expression. they are often used to create simple lambda expression by refrencing existing method.
+
+we can implement the functional interface using this.
+
+static- ClassName::methodName
+instance- Object::methodName
+constructor- ClassName::new
+
+
+----------------------------------------------end of method reference------------------------------------------------------------------------------
+
+
+Optional
+
+a container object which may or may not contain a non null value. if value is present isPresent() will return true and get() will return the value.
+
+
+
