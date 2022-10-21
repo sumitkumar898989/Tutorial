@@ -1,0 +1,55 @@
+1. In configuration file we have to map entity class marked in screenshot and all data source configuration.
+2. Hbm2ddl.auto= create then every time when execution start it will drop the existing table and will create 
+   new table. Value update means it will create table at first execution if table does not exist and every time 
+   it will not recreate the table. 
+3. Configuration cfg = new Configuration();
+   cfg.configure("hibernate.cfg.xml");
+   SessionFactory factory=cfg.buildSessionFactory();
+   Session session = factory.openSession();
+   session.beginTransaction();
+   session.save(st);
+   session.getTransaction().commit();
+   session.close();
+4. get if not found then retirns null. eager initiliazition.
+   load if not found then ObjectNotFoundException Lazy Inilization.
+5. @Embeddable to embed the object. class having has-a relationship. 
+6. Cascade=CascadeType.ALL is used // cascade is used to perform transaction to related entity in case of one to one
+   etc. mapping. when we save question then asnwer is not automatically saved we need to save answer exliclitly so
+   using cascase this issue resolve if parent is saved then corresponding child also get loaded.
+7. We use mapped by attribute to avoid foreign key creation of another table. In one-to-one example answer_id 
+   foreign key is created in question table so now we don’t need question_id in answer table so we use mapped by 
+   attribute so question_id is not created in answer table.
+8. Fetch Technique Theory: Lazy and Eager loading
+   in Lazy loading associated data is loads only if we explicitly call getter or size method.
+   in Eager data loading occurs on spot.
+   Example Eager:
+   @OneToMany(mappedBy = "question" ,fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+   private List<Answer> answers;
+9. Hibernate Lifecycle:
+   Transient(when data is set to object), Persistent(save), Detached(session.close), Removed(delete)
+10. HQL
+    org.hibernate.query.*;
+    Query q = session.createQuery(query)
+    q.setparameter("test")  in case of where clause ":x"
+    List<Student> list= q.list(); in case of select
+    int t= q.executeUpdate();     in case of update,delete,insert
+    NativeQuery nq = session.createQuery(query)
+    Pagination:
+    q.setFirstResult(0);
+    q.setMaxResults(5);
+11. Hibernate Cache mechanism to enhance the performance of application.
+    First Level- Session Object by default provided.
+    Second Level- SessionFactory manually enable. in this case ehcache jar and hibernate-ehcache need to add 
+    in pom. then apply @Cache(usage=CacheConcurrencyStrategy.READ_ONLY) annotation to entity.
+    in hibernate config file we have to add two properties:
+    cache.use_second_level_cache=true
+    cache.region.factory_class=org.hibernate.cache.ehcache.internal.EhcacheRegionFactory
+    we can see after closing the session we are opening session and firing the query two times of get but when 
+    you see the output query will be fire only once due to second level cache enabled. 
+
+    
+
+    
+
+    
+

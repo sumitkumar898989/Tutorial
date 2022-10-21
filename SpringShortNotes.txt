@@ -1,0 +1,139 @@
+Spring Core
+----------------
+1. two types of IOC Container BeanFactory and Application Context. both are interface. Application Context 
+implememnts Bean Factory. annotation is not supported in Bean Factory.
+2. Application Context- ClassPathXml, FileSystemXml, Annotation Config
+3. DI two ways constructor injection and setter injection.
+4. Life Cycle Method configure technique:
+   xml- init-method, destroy-method (we can give any method name for init and destroy)
+   interface- initializing bean(After property set method is init method) and disposable bean(destroy)
+   annotation- @PostConstruct and @PreDestroy ( we can give any method name for init and destroy)
+   <context:annotation-config /> defined in xml file to enable annotation.
+5. Autowire- Spring container inject the dependency automatically works with reference only.
+6. Autowire 
+   xml- byname,bytype,no,constructor,autodetect(deprecated since spring 3)
+   annotation- @Autowire in reference varaible or setter or constructor
+               @Qualifier annotation is used with autowire to qualify the bean.
+7. Standalone Collection in xml: <utill:list> </utill:list>
+8. StereoType annotation: @Component  when using this annotation we have to define the <context:component-scan>
+   tag in xml. <context:component-scan base-package="com.sumit.springcore"> we can specify bean name also using 
+   @Component("mybean").
+   In this case properties of object will be null so will use @Value annotation with all property.
+   @Component annotation is the main Stereotype Annotation. There are some Stereotype meta-annotations which is derived from @Component those are
+   @Service,@Repository,@Controller
+9. @Value("#temp") here temp is the id of standalone collection defined in xml.
+10.Bean Scope:
+   Singelton,Prototype,request,session and global session
+   we can configure bean scope using @Scope with @Component or @Bean annotation.in xml can use scope="" attribute.
+   <bean class="" name="" scope=""> </bean>
+   A new instance will be created for a single bean definition every time an HTTP request is made for that bean.
+   The request scope creates a bean instance for a single HTTP request, while the session scope creates a 
+   bean instance for an HTTP Session. Only valid in the context of a web-aware Spring ApplicationContext.
+11.Spring Expression Language supports parsing and exceuting expression with the help of @Value annotations.
+   e.g @Value("#{11+22}") in expression we can invoke static method(T(class).method(param))
+   and variable(T(class).variable) and create object(new Object(value)).
+12.instead of xml configuration we can define java based configuration using @Configuration and 
+   @ComponentSacn at class level.we use AnnotationConfig application context for javaconfig class.
+13.Spring @Bean Annotation is applied on a method to specify that it returns a bean to be managed by 
+   Spring context. by default the bean created is refernced from method name so to avoid this: 
+   we can specify name with @Bean annotation.
+   @Bean(name={"temp1","temp2"}) 
+-------------------------------------------------------------------------------------------------------------------
+Spring ORM
+----------------
+1. HibernateTemplate-> SessionFactory interface-> LocalSessionFactoryBean(datasource,hibernate properties
+,annonated calss)->DataSource
+
+methods:
+Save
+Update
+Get
+loadAll
+-------------------------------------------------------------------------------------------------------------------  
+Spring JDBC
+------------
+JdbcTemplate->dataSource(DriverManagerDataSource)
+
+methods:
+update
+queryForObject(query, rowMapper,studentId)
+query(query, new RowMapperImpl())    
+------------------------------------------------------------------------------------------------------------------
+
+Spring Boot
+---------------
+1. Spring Boot= Spring Framework+ Embedded Server- Configuration
+2. spring.mvc.view.suffix and prefix configured in application.properties. view resolver.
+Reason of adding jasper dependency as it converts jsp to servlet and we can see the pages. If we don’t add this, then will get option to download jsp rather than viewing and will get below error:
+3. db configuration do in application.properties.
+4. JPA
+   methods:
+   save(Object)
+   saveall(List) retruns Iterable<>.
+   update- findbyid returns optional, then update the object and save.
+   deletebyid
+   deleteall
+5. Custom finder method/ Derived Query Method
+   findbynamestartingwith, findbynameendingwith, findbynamecontaining
+6. @Query for JPQL query
+   @Query(value="query" , nativeQuery="true") for native query
+7. Dev Tools: Live Reload, Automatic Restart
+8. Valid HTTP Status Code:
+   Post:201, PUT:200, Delete: 204, Get:200,204,206
+9.The @ResponseBody annotation tells a controller that the object returned is automatically serialized into JSON 
+  and passed back into the HttpResponse object.
+10.@PathVariable annotation used to get the parameter sent in url for Get operation.
+11.@RequestBody annotation used to get the json as object sent in body for Post operation.
+12.@RequestBody and @PathVariable annotation used in PUT operation.
+13.A ResponseEntity is returned. We give ResponseEntity a custom status code, headers, and a body. 
+   With @ResponseBody , only the body is returned. The headers and status code are provided by Spring.
+   ResponseEntity represents the whole HTTP response: status code, headers, and body. As a result, we can use 
+   it to fully configure the HTTP response. If we want to use it, we have to return it from the endpoint; 
+   Spring takes care of the rest. ResponseEntity is a generic type.
+   ResponseEntity.of(HttpsStatus.NOT_FOUND).build();
+   ResponseEntity.of(Optional.of(list));
+   ResponseEntity.of(HttpsStatus.INTERNAL_SERVER_ERROR).build();
+   ResponseEntity.ok().body(book)build();
+14.@Lazy annotation indicates whether a bean is to be lazily initialized. It can be used on @Component and @Bean 
+   definitions. A @Lazy bean is not initialized until referenced by another bean or explicitly retrieved from 
+   BeanFactory . Beans that are not annotated with @Lazy are initialized eagerly.
+15.@RequestParam is used to get form data by name.
+
+--------------------------------------------------------------------------------------------------------------
+Spring MVC
+----------
+1. Application Creation Steps:
+   Configure the dispathcer servlet in web.xml
+   Create Spring Configuration file(spring-servlet.xml)
+   Configure View Resolver
+   Create Controller
+   Create a View to show the page
+2. @RequestMapping(path="/processform",method=RequestMethod.POST) 
+3. Sending data from controller
+   Model and ModelAndView
+4. Sending data from view to controller
+   HttpServletRequest request, request.getParameter
+   @RequestParam("email") String email
+   @ModelAttribute User user
+5. Redirecting in Spring MVC
+   redirect prefix
+   RedirectView
+6. Handling Errors using BindResult Object
+   BindingResult result
+   result.hasErrors()
+7. Exception handling using @ExceptionHandler(value="nullpointerexception.class") in method in controller class
+   we can create n number of methods and return to specified page.
+8. Centralized exception handling is done by creating a class using @ControllerAdvice and define all method 
+   @ExceptionHandler in this class.
+
+   
+
+
+
+   
+
+
+    
+   
+      
+   
